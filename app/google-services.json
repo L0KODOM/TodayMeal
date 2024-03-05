@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "267721350020",
+    "project_id": "todaymeal-75d46",
+    "storage_bucket": "todaymeal-75d46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267721350020:android:e87dee6e0917d9614bdbd1",
+        "android_client_info": {
+          "package_name": "com.lokodom.todaymeal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267721350020-giurrch7sjcns4meumbhukov9efd0r8a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lokodom.todaymeal",
+            "certificate_hash": "c76b62ffb00661acabda6221ca5dfec0952e2477"
+          }
+        },
+        {
+          "client_id": "267721350020-ooe178to146lp038qa295nethip44fuf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX9eFFgWjl20u7jrZULlPdPeUins5TJ4s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267721350020-ooe178to146lp038qa295nethip44fuf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
