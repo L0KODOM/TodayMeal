@@ -42,6 +42,8 @@ fun RatedColumn(data: List<Rating>?, viewModel : MealViewModel, context:Context)
                         .border(1.dp, Color.Gray)){
                         Column (modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally){
 
+                            AsyncImage(model = meal.image, contentDescription = null)
+
                             Spacer(modifier = Modifier.height(10.dp))
 
                             Text(text = meal.name, textDecoration = TextDecoration.Underline,
@@ -57,7 +59,11 @@ fun RatedColumn(data: List<Rating>?, viewModel : MealViewModel, context:Context)
                                 else -> R.drawable.estrellas}
 
                             Image(painter = painterResource(id =ratingValue
-                            ), contentDescription = null, modifier = Modifier.width(150.dp).height(20.dp))
+                            ), contentDescription = null, modifier = Modifier
+                                .width(150.dp)
+                                .height(20.dp))
+                            
+                            Spacer(modifier = Modifier.height(10.dp))
 
                         }
                     }

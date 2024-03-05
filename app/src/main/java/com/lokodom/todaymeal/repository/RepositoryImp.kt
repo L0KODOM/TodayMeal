@@ -317,16 +317,19 @@ class RepositoryImp @Inject constructor(
             for (document in querySnapshot) {
                 val result = document.toObject(Rating::class.java)
                 rated.add(result)
-                println(rated)
             }
         } catch (e: FirebaseFirestoreException) {
             Log.d("error", "firestore ${e.message}")
         }
         return rated
             .groupBy { it.name }
-            .mapValues { (_, group,) ->
+            .mapValues { (_, group) ->
                 group.map { it.rating.toInt() }.average().toInt() }
-            .map { (name, rating) -> Rating(name, rating.toString()) }
+            .map { (name, rating) ->
+                val groupList = rated.filter { it.name == name }
+                val image = groupList.firstOrNull()?.image ?: ""
+                Rating(name, rating.toString(), image = image)
+            }
             .sortedByDescending { it.rating.toInt() }
             .take(5)
     }
