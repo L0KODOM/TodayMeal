@@ -1,6 +1,7 @@
 package com.lokodom.todaymeal.views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -34,6 +36,8 @@ fun FavList(viewModel: MealViewModel){
 
     val favMeals by viewModel.favs.observeAsState(arrayListOf())
 
+    val context = LocalContext.current
+
 
     LazyColumn(modifier = Modifier.padding(top = 100.dp),content = {
         var itemCount = favMeals.size
@@ -44,7 +48,8 @@ fun FavList(viewModel: MealViewModel){
             val meal = favMeals[auxIndex]
             Card {
                 if (meal != null) {
-                    Column (horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column (horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.clickable { meal.name?.let { viewModel.selectName(it, context) } }) {
                         AsyncImage(model = meal.image, contentDescription = "image")
                         Spacer(modifier = Modifier.height(20.dp))
                         Box(modifier = Modifier.padding(10.dp)){

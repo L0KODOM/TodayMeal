@@ -141,6 +141,12 @@ class MealViewModel @Inject constructor(
             }
     }
 
+    fun removeMealDataFromScreen(){
+        viewModelScope.launch {
+            state = state.copy(mealData = null)
+        }
+    }
+
     fun saveFav(){
 
         viewModelScope.launch (Dispatchers.IO){

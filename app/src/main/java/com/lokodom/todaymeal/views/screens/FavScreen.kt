@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,12 +32,14 @@ import com.lokodom.todaymeal.navigation.AppScreens
 import com.lokodom.todaymeal.ui.theme.ThinkSmart
 import com.lokodom.todaymeal.viewmodel.MealViewModel
 import com.lokodom.todaymeal.views.FavList
+import com.lokodom.todaymeal.views.cards.DishCard
 
 @Composable
 fun FavScreen(
     navController: NavController,
     viewModel: MealViewModel = hiltViewModel()
 ){
+    val context = LocalContext.current
 
     Box(modifier = Modifier
         .background(Color.LightGray)
@@ -56,6 +59,7 @@ fun FavScreen(
         Spacer(modifier = Modifier.height(20.dp))
         Column(modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally) {
+            DishCard(data = viewModel.state.mealData , viewModel = viewModel, context = context)
             FavList(viewModel = viewModel)
         }
     }
