@@ -304,38 +304,46 @@ fun DishCard(data: MealData?, viewModel: MealViewModel, context: Context) {
                 }
                 Spacer(modifier = Modifier.height(10.dp))
                 val rating = viewModel.ratingState.stars
-                Image(painter = painterResource(id = rating), contentDescription = "rating",
-                    modifier = Modifier
+                Box{
+                    Image(painter = painterResource(id = rating), contentDescription = "rating",
+                        modifier = Modifier
+                            .width(150.dp)
+                            .height(20.dp))
+                    Box(modifier = Modifier
                         .width(150.dp)
-                        .height(20.dp))
-                Spacer(modifier = Modifier.height(10.dp))
-                Box(modifier = Modifier.width(200.dp)){
-                    Row (modifier = Modifier.fillMaxSize(),
-                        horizontalArrangement = Arrangement.SpaceBetween){
-                        Button(onClick = { viewModel.changeRating(R.drawable.estrellas, data.name,
-                            data.image) },
-                            modifier = Modifier.size(30.dp)) {
-                            Text(text = "1")
-                        }
-                        Button(onClick = { viewModel.changeRating(R.drawable.estrellas2, data.name,
-                            data.image) },
-                            modifier = Modifier.size(30.dp)) {
-                            Text(text = "2")
-                        }
-                        Button(onClick = { viewModel.changeRating(R.drawable.estrellas3, data.name,
-                            data.image )},
-                            modifier = Modifier.size(30.dp)) {
-                            Text(text = "3")
-                        }
-                        Button(onClick = { viewModel.changeRating(R.drawable.estrellas4, data.name,
-                            data.image )},
-                            modifier = Modifier.size(30.dp)) {
-                            Text(text = "4")
-                        }
-                        Button(onClick = { viewModel.changeRating(R.drawable.estrellas5, data.name,
-                            data.image) },
-                            modifier = Modifier.size(30.dp)) {
-                            Text(text = "5")
+                        .height(20.dp)){
+                        Row (modifier = Modifier.fillMaxSize(),
+                            horizontalArrangement = Arrangement.SpaceBetween){
+                            Button(onClick = { viewModel.changeRating(R.drawable.estrellas, data.name,
+                                data.image) },
+                                modifier = Modifier.size(20.dp),
+                                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)) {
+                                Text(text = "1")
+                            }
+                            Button(onClick = { viewModel.changeRating(R.drawable.estrellas2, data.name,
+                                data.image) },
+                                modifier = Modifier.size(20.dp),
+                                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)) {
+                                Text(text = "2")
+                            }
+                            Button(onClick = { viewModel.changeRating(R.drawable.estrellas3, data.name,
+                                data.image )},
+                                modifier = Modifier.size(20.dp),
+                                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)) {
+                                Text(text = "3")
+                            }
+                            Button(onClick = { viewModel.changeRating(R.drawable.estrellas4, data.name,
+                                data.image )},
+                                modifier = Modifier.size(20.dp),
+                                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)) {
+                                Text(text = "4")
+                            }
+                            Button(onClick = { viewModel.changeRating(R.drawable.estrellas5, data.name,
+                                data.image) },
+                                modifier = Modifier.size(20.dp),
+                                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)) {
+                                Text(text = "5")
+                            }
                         }
                     }
                 }
