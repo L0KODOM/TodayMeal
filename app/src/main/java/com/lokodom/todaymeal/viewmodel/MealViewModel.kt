@@ -93,6 +93,12 @@ class MealViewModel @Inject constructor(
             }
     }
 
+    fun clearList(){
+        viewModelScope.launch {
+            ListState =ListState.copy(list = emptyList())
+        }
+    }
+
     fun addCategories(){
         if (_isLoading.value == false)
             viewModelScope.launch (Dispatchers.IO){

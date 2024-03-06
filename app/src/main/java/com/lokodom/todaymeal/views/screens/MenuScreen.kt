@@ -93,7 +93,7 @@ fun MenuScreen(
                         modifier = Modifier
                             .padding(vertical = 20.dp, horizontal = 20.dp)
                             .clickable { helpExpanded = !helpExpanded })
-                    if (helpExpanded or countriesExpanded or categoriesExpanded or ratedExpanded or ingredientsExpanded){
+                    if (countriesExpanded or categoriesExpanded or ratedExpanded or ingredientsExpanded){
                         Spacer(modifier = Modifier.width(10.dp))
                         Icon(imageVector = Icons.Filled.Close, contentDescription = "back", tint = Color.White,
                             modifier = Modifier
@@ -102,7 +102,8 @@ fun MenuScreen(
                                 countriesExpanded= false
                                 categoriesExpanded= false
                                 ratedExpanded = false
-                                ingredientsExpanded = false})
+                                ingredientsExpanded = false
+                                viewModel.clearList()})
                     }
                 }
 
