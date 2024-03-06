@@ -34,11 +34,24 @@ import com.lokodom.todaymeal.viewmodel.State.MealState
 import com.lokodom.todaymeal.viewmodel.State.RatedListState
 import com.lokodom.todaymeal.viewmodel.State.RatingState
 import com.lokodom.todaymeal.viewmodel.State.TranslateState
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 @HiltViewModel
 class MealViewModel @Inject constructor(
     private val repository: MealRepository
 ) : ViewModel() {
+
+    private val _isReady = MutableStateFlow(false)
+    val isReady = _isReady.asStateFlow()
+
+    init {
+        viewModelScope.launch{
+            delay(1000)
+            _isReady.value = true
+        }
+    }
 
     var state by mutableStateOf(MealState())
         private set
