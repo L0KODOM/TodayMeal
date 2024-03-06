@@ -27,13 +27,11 @@ fun CategoryDishCard(
     data: List<MealData>?,
     viewModel : MealViewModel
 ){
-
     val context = LocalContext.current
 
-    Card {
-
-        LazyColumn(content = {
-            items(data!!){meal ->
+    LazyColumn(content = {
+        items(data!!){meal ->
+            Card {
                 Box(modifier = Modifier
                     .clickable { viewModel.selectName(meal.name, context) }
                     .border(1.dp, Color.Gray)){
@@ -46,8 +44,9 @@ fun CategoryDishCard(
                         Spacer(modifier = Modifier.height(20.dp))
                     }
                 }
-                Spacer(modifier = Modifier.height(40.dp))
             }
-        })
-    }
+            Spacer(modifier = Modifier.height(40.dp))
+        }
+    })
+
 }

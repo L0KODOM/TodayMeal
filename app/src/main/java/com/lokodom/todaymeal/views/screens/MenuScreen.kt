@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.ShoppingCart
@@ -66,6 +68,7 @@ fun MenuScreen(
     val isLoading by viewModel.isLoading.observeAsState(false)
     var ratedExpanded by remember{ mutableStateOf(false) }
     var ingredientsExpanded by remember{ mutableStateOf(false) }
+    var helpExpanded by remember{ mutableStateOf(false) }
 
 
     Box(modifier = Modifier.fillMaxSize()){
@@ -78,13 +81,31 @@ fun MenuScreen(
             horizontalAlignment = Alignment.CenterHorizontally){
 
 
-            Row (modifier = Modifier.fillMaxWidth()){
+            Row (modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround){
                 Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "back", tint = Color.White,
                     modifier = Modifier
                         .padding(vertical = 20.dp, horizontal = 20.dp)
                         .clickable { navController.navigate(AppScreens.RandomDishScreen.route) })
-                Spacer(modifier = Modifier.width(30.dp))
                 Text(text = "Menu", fontFamily = ThinkSmart, color = Color.White, fontSize = 82.sp)
+                Row {
+                    Icon(imageVector = Icons.Filled.Build, contentDescription = "back", tint = Color.White,
+                        modifier = Modifier
+                            .padding(vertical = 20.dp, horizontal = 20.dp)
+                            .clickable { helpExpanded = !helpExpanded })
+                    if (helpExpanded or countriesExpanded or categoriesExpanded or ratedExpanded or ingredientsExpanded){
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Icon(imageVector = Icons.Filled.Close, contentDescription = "back", tint = Color.White,
+                            modifier = Modifier
+                                .padding(vertical = 20.dp, horizontal = 20.dp)
+                                .clickable {
+                                countriesExpanded= false
+                                categoriesExpanded= false
+                                ratedExpanded = false
+                                ingredientsExpanded = false})
+                    }
+                }
+
             }
 
             Spacer(modifier = Modifier.height(30.dp))
@@ -97,7 +118,15 @@ fun MenuScreen(
 
             Column (modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.Center){
 
-                if (!countriesExpanded && !ratedExpanded && !ingredientsExpanded){
+                if (helpExpanded){
+                    Box(modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center){
+                        Image(painter = painterResource(id = R.drawable.culinary_confessional),
+                            contentDescription = null)
+                    }
+                }
+
+                if (!countriesExpanded && !ratedExpanded && !ingredientsExpanded && !helpExpanded){
                     SelectionBox(
                         categoriesExpanded = categoriesExpanded,
                         countriesExpanded = countriesExpanded,
@@ -118,7 +147,7 @@ fun MenuScreen(
                         context = context
                     )
                 }
-                if (!categoriesExpanded && !ratedExpanded && !ingredientsExpanded){
+                if (!categoriesExpanded && !ratedExpanded && !ingredientsExpanded && !helpExpanded){
 
                     Spacer(modifier = Modifier.width(40.dp))
 
@@ -142,7 +171,7 @@ fun MenuScreen(
                     )
 
                 }
-                if (!categoriesExpanded && !countriesExpanded && !ingredientsExpanded){
+                if (!categoriesExpanded && !countriesExpanded && !ingredientsExpanded && !helpExpanded){
 
                     Spacer(modifier = Modifier.width(40.dp))
 
@@ -167,7 +196,7 @@ fun MenuScreen(
                     )
 
                 }
-                if (!categoriesExpanded && !ratedExpanded && !countriesExpanded){
+                if (!categoriesExpanded && !ratedExpanded && !countriesExpanded && !helpExpanded){
 
                     Spacer(modifier = Modifier.width(40.dp))
 
@@ -216,8 +245,8 @@ fun SelectionBox(categoriesExpanded:Boolean,
                     Icon(imageVector = icon, contentDescription =null,
                         tint = orange)
                     Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = name, color = Color.White, textDecoration = TextDecoration.Underline,
-                        fontWeight = FontWeight.ExtraBold)
+                    Text(text = name, fontFamily = ThinkSmart, color = Color.White, textDecoration = TextDecoration.Underline,
+                        fontWeight = FontWeight.ExtraBold, fontSize = 24.sp)
                 }
             }
             Spacer(modifier = Modifier.height(30.dp))
