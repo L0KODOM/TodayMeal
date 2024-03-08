@@ -46,8 +46,6 @@ class MyViewModelTest {
 
         // Then
         TestCase.assertEquals(num, viewModel.ratingState.stars)
-        // For example, you can check if the ratingState has been updated correctly
-        // Also, you may need to wait for some time for the Firestore operation to complete
-        // and verify the result accordingly
+
     }
 }
