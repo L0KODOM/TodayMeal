@@ -47,10 +47,7 @@ class MealViewModel @Inject constructor(
     val isReady = _isReady.asStateFlow()
 
     init {
-        viewModelScope.launch{
-            delay(1000)
-            _isReady.value = true
-        }
+        _isReady.value = true
     }
 
     var state by mutableStateOf(MealState())
@@ -70,7 +67,7 @@ class MealViewModel @Inject constructor(
     var ratedListState by mutableStateOf(RatedListState())
         private set
 
-    val auth: FirebaseAuth = Firebase.auth
+    //val auth: FirebaseAuth = Firebase.auth
 
     val _isLoading: MutableLiveData<Boolean>
             by lazy { MutableLiveData<Boolean>(false) }
@@ -197,7 +194,8 @@ class MealViewModel @Inject constructor(
     }
 
     fun ratingResults(){
-        viewModelScope.launch {
+
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val ratingResults = repository.getRatingResults()
                 ratedListState = ratedListState.copy(ratedList  = ratingResults)

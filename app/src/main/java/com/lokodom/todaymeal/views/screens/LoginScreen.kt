@@ -57,9 +57,9 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.lokodom.todaymeal.R
 import com.lokodom.todaymeal.navigation.AppScreens
-import com.lokodom.todaymeal.viewmodel.Login.createUserWithEmail
-import com.lokodom.todaymeal.viewmodel.Login.signInEmailAndPassword
-import com.lokodom.todaymeal.viewmodel.Login.signInWithGoogleCredential
+//import com.lokodom.todaymeal.viewmodel.Login.createUserWithEmail
+//import com.lokodom.todaymeal.viewmodel.Login.signInEmailAndPassword
+//import com.lokodom.todaymeal.viewmodel.Login.signInWithGoogleCredential
 import com.lokodom.todaymeal.viewmodel.MealViewModel
 
 val red = Color(220/255f, 61/255f, 61/255f, 1.0f)
@@ -145,16 +145,15 @@ fun LoginScreen(navController: NavController,
 fun LoginOrRegisterButton(viewModel: MealViewModel, context:Context, changeLoginToRegister:Boolean,
                           email:String,password:String,navController: NavController){
     Button(onClick = {if (!changeLoginToRegister) {
-        viewModel.signInEmailAndPassword(context, email, password) {
             navController.navigate(
                 AppScreens.RandomDishScreen.route
             )
-        }
-    }else{ viewModel.createUserWithEmail(email,password){navController.navigate(
+
+    }else{ navController.navigate(
         AppScreens.RandomDishScreen.route
     )}
 
-    } },
+     },
         colors = ButtonDefaults.buttonColors(orange)
     ) {
         Text(text = if (!changeLoginToRegister) {
@@ -173,9 +172,7 @@ fun GoogleSigning(token:String, viewModel: MealViewModel,navController: NavContr
         try {
             val account = task.getResult(ApiException::class.java)
             val credential = GoogleAuthProvider.getCredential(account.idToken,null)
-            viewModel.signInWithGoogleCredential(credential){
                 navController.navigate(AppScreens.RandomDishScreen.route)
-            }
         }catch (e:Exception){
             Log.d("FirebaseTutorial", "signIn con google falló ${e.localizedMessage}")
 
